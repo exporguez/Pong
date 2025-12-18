@@ -944,6 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidadPelota: 4
   direccion: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
 --- !u!54 &764963824
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1552,6 +1553,7 @@ MonoBehaviour:
   puntosJugador2: 0
   screenVictoriaJugador1: {fileID: 1406349013}
   screenVictoriaJugador2: {fileID: 1782469802}
+  restartInput: 32
 --- !u!1 &1406349013
 GameObject:
   m_ObjectHideFlags: 0

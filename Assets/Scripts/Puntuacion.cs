@@ -22,6 +22,9 @@ public class Puntuacion : MonoBehaviour
     [SerializeField]
     GameObject screenVictoriaJugador2;
 
+    [SerializeField]
+    KeyCode restartInput;
+
 
     private void Awake()
     {
@@ -47,12 +50,14 @@ public class Puntuacion : MonoBehaviour
     {
         puntosJugador1++;
         ActualizarPuntuacion();
+        Victoria();
     }
 
     public void GolesJugador2()
     {
         puntosJugador2++;
         ActualizarPuntuacion();
+        Victoria();
     }
 
     public void ActualizarPuntuacion()
@@ -70,6 +75,16 @@ public class Puntuacion : MonoBehaviour
         if (puntosJugador2 == 3)
         {
             screenVictoriaJugador2.SetActive(true);
+        }
+
+        if(Input.GetKey(restartInput))
+        {
+            puntosJugador1 = 0;
+            puntosJugador2 = 0;
+            ActualizarPuntuacion();
+            Jugador.instance.ResetearPosicion();
+            screenVictoriaJugador1.SetActive(false);
+            screenVictoriaJugador2.SetActive(false);
         }
     }
 }

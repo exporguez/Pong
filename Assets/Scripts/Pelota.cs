@@ -9,12 +9,16 @@ public class Pelota : MonoBehaviour
     
     [SerializeField]
     Vector3 direccion;
-   
+
+    [SerializeField]
+    Rigidbody rb;
+
     Vector3 origen;    
 
     private void Awake()
     {
         origen = transform.position;
+        rb = GetComponent<Rigidbody>();
     }
 
     void Start()
@@ -57,12 +61,16 @@ public class Pelota : MonoBehaviour
         {
             direccion.y = - direccion.y;
         }
+
+        IncrementarVelocidad();
     }
 
     void OnTriggerEnter(Collider other)
     {
         transform.position = origen;
         
+        ResetearVelocidad();
+
         EstablecerDireccion();
 
         if(other.CompareTag("Derecha"))
@@ -75,4 +83,20 @@ public class Pelota : MonoBehaviour
             Puntuacion.instance.GolesJugador2();
         }
     }
+
+    void IncrementarVelocidad()
+    {
+        rb.linearVelocity = rb.linearVelocity.normalized * (velocidadPelota += 0.5f);
+
+        if(velocidadPelota >= 20f)
+        {
+            velocidadPelota = 20f;
+        }
+    }
+
+    void ResetearVelocidad()
+    {
+        velocidadPelota = 4f;
+    }
+
 }
